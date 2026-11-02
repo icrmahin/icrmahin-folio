@@ -7,13 +7,11 @@ import CTA from "../sections/CTA";
 export default function Page() {
   return (
     <>
-      <div className="border-x border-x-accent">
-        <Hero />
-        <Projects />
-        <Experience />
-        <GitHubActivity />
-        <CTA />
-      </div>
+      <Hero />
+      <GitHubActivity />
+      <Projects />
+      <Experience />
+      <CTA />
     </>
   );
 }

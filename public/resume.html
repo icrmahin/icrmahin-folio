@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A. Mahin — Resume</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #202725;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10pt;
+        line-height: 1.45;
+      }
+
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      header {
+        padding-bottom: 14px;
+        border-bottom: 2px solid #f16b52;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 25pt;
+        line-height: 1.1;
+      }
+
+      h2 {
+        margin-bottom: 7px;
+        color: #bd4935;
+        font-size: 10pt;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-size: 10pt;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .role {
+        margin-top: 4px;
+        color: #58625e;
+        font-size: 12pt;
+      }
+
+      .contact {
+        margin-top: 8px;
+        color: #58625e;
+        font-size: 9pt;
+      }
+
+      section {
+        margin-top: 16px;
+      }
+
+      .project {
+        padding: 8px 0;
+        border-top: 1px solid #d5d9d2;
+      }
+
+      .project:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .project-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .category,
+      .skills {
+        color: #58625e;
+        font-size: 9pt;
+      }
+
+      .description {
+        margin-top: 2px;
+      }
+
+      @media screen {
+        body {
+          max-width: 760px;
+          margin: 32px auto;
+          padding: 32px;
+          background: #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>A. Mahin</h1>
+        <p class="role">Product Builder</p>
+        <p class="contact">
+          <a href="https://github.com/icrmahin">github.com/icrmahin</a>
+        </p>
+      </header>
+
+      <section>
+        <h2>Profile</h2>
+        <p>
+          I design, build, and ship digital products through thoughtful design
+          and practical engineering. My work spans mobile commerce, product
+          websites, and developer tools.
+        </p>
+      </section>
+
+      <section>
+        <h2>Selected Projects</h2>
+        <article class="project">
+          <div class="project-heading">
+            <h3>Hibbullah</h3>
+            <p class="category">Mobile commerce</p>
+          </div>
+          <p class="description">
+            Pharmacy shopping app with customer and shop-management routes,
+            built with Expo, React Native, and Supabase.
+          </p>
+        </article>
+        <article class="project">
+          <div class="project-heading">
+            <h3>Sifa Pharma</h3>
+            <p class="category">Pharmacy operations</p>
+          </div>
+          <p class="description">
+            Mobile pharmacy platform covering customer ordering, inventory,
+            stock workflows, and invoices.
+          </p>
+        </article>
+        <article class="project">
+          <div class="project-heading">
+            <h3>Hibbullah Landing</h3>
+            <p class="category">Product website</p>
+          </div>
+          <p class="description">
+            Responsive product showcase for the Hibbullah Android app, built
+            with React, TypeScript, and Tailwind CSS.
+          </p>
+        </article>
+        <article class="project">
+          <div class="project-heading">
+            <h3>Visqode.nvim</h3>
+            <p class="category">Developer tools</p>
+          </div>
+          <p class="description">
+            Configurable Neovim theme family written in Lua, with dark, rose,
+            cyan, and violet variants.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Technologies</h2>
+        <p class="skills">
+          React · Next.js · TypeScript · Expo · React Native · Supabase · Lua ·
+          Tailwind CSS
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

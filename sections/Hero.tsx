@@ -3,6 +3,10 @@
 import { useEffect, useState, type PointerEvent } from "react";
 import Link from "next/link";
 import {
+  CalendarBlankIcon,
+  DownloadSimpleIcon,
+} from "@phosphor-icons/react/ssr";
+import {
   AnimatePresence,
   motion,
   useMotionValue,
@@ -65,7 +69,7 @@ function QuestionMark() {
   return (
     <Link
       aria-label="Read about Mahin"
-      className="group relative grid cursor-pointer text-[150px] leading-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
+      className="group relative grid cursor-pointer text-[180px] leading-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
       href="/about"
       onPointerEnter={(event) => {
         setFontIndex(0);
@@ -132,6 +136,25 @@ export default function Hero() {
           <div className="text-4xl font-geist-sans">it&apos;s Mahin.</div>
           <div className="text-lg text-[#ffffff]/30 font-geist-serif-triangle italic">
             Resilience · Adaptability · Autonomy
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <a
+              className="inline-flex min-h-9 items-center gap-2 rounded-md bg-accent px-3 text-xs font-medium text-accent-foreground transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              href="https://cal.com/icrmahin"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <CalendarBlankIcon aria-hidden="true" size={15} />
+              Book a call
+            </a>
+            <a
+              className="inline-flex min-h-9 items-center gap-2 rounded-md border border-border px-3 text-xs font-medium text-text-muted transition-colors hover:border-border-strong hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              download
+              href="/resume.pdf"
+            >
+              <DownloadSimpleIcon aria-hidden="true" size={15} />
+              Download resume
+            </a>
           </div>
         </div>
         <QuestionMark />
