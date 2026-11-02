@@ -10,7 +10,7 @@ export default function Projects() {
     >
       <header className="mb-5 flex items-end justify-between gap-4">
         <h2 className="text-lg font-medium text-text" id="projects-title">
-          My Craft's
+          My Craft&apos;s
         </h2>
       </header>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

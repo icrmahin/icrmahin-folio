@@ -9,6 +9,15 @@ export type Project = {
   overview: string;
   implementation: string;
   highlights: readonly string[];
+  workflow: readonly WorkflowStep[];
+};
+
+export type WorkflowStep = {
+  id: string;
+  title: string;
+  description: string;
+  input: boolean;
+  output: boolean;
 };
 
 // Project data
@@ -31,6 +40,36 @@ export const projects = {
       "Expo Router navigation",
       "Supabase integration",
     ],
+    workflow: [
+      {
+        id: "customer",
+        title: "Customer app",
+        description: "Browse the pharmacy",
+        input: false,
+        output: true,
+      },
+      {
+        id: "catalog",
+        title: "Product catalog",
+        description: "Explore available products",
+        input: true,
+        output: true,
+      },
+      {
+        id: "backend",
+        title: "Supabase",
+        description: "App data and services",
+        input: true,
+        output: true,
+      },
+      {
+        id: "shop",
+        title: "Shop admin",
+        description: "Manage pharmacy operations",
+        input: true,
+        output: false,
+      },
+    ],
   },
   sifaPharma: {
     slug: "sifa-pharma",
@@ -49,6 +88,36 @@ export const projects = {
       "Customer and admin experiences",
       "Realtime stock workflows",
       "Invoice and inventory tools",
+    ],
+    workflow: [
+      {
+        id: "customer",
+        title: "Customer",
+        description: "Browse and place orders",
+        input: false,
+        output: true,
+      },
+      {
+        id: "orders",
+        title: "Orders",
+        description: "Create and track invoices",
+        input: true,
+        output: true,
+      },
+      {
+        id: "inventory",
+        title: "Inventory",
+        description: "Update stock status",
+        input: true,
+        output: true,
+      },
+      {
+        id: "admin",
+        title: "Pharmacy admin",
+        description: "Manage shop operations",
+        input: true,
+        output: false,
+      },
     ],
   },
   hibbullahLanding: {
@@ -69,6 +138,36 @@ export const projects = {
       "Reusable page sections",
       "Static-site deployment",
     ],
+    workflow: [
+      {
+        id: "product",
+        title: "Hibbullah app",
+        description: "Set the product context",
+        input: false,
+        output: true,
+      },
+      {
+        id: "overview",
+        title: "Overview",
+        description: "Introduce the service",
+        input: true,
+        output: true,
+      },
+      {
+        id: "showcase",
+        title: "Showcase",
+        description: "Present product features",
+        input: true,
+        output: true,
+      },
+      {
+        id: "download",
+        title: "Download",
+        description: "Link to the Android app",
+        input: true,
+        output: false,
+      },
+    ],
   },
   visqode: {
     slug: "visqode",
@@ -87,6 +186,36 @@ export const projects = {
       "Four coordinated color variants",
       "Configurable transparency and terminal colors",
       "Highlights for common Neovim plugins",
+    ],
+    workflow: [
+      {
+        id: "options",
+        title: "Theme options",
+        description: "Choose style and settings",
+        input: false,
+        output: true,
+      },
+      {
+        id: "variants",
+        title: "Color variants",
+        description: "Dark, rose, cyan, violet",
+        input: true,
+        output: true,
+      },
+      {
+        id: "syntax",
+        title: "Syntax groups",
+        description: "Apply editor colors",
+        input: true,
+        output: true,
+      },
+      {
+        id: "plugins",
+        title: "Plugin UI",
+        description: "Coordinate Neovim plugins",
+        input: true,
+        output: false,
+      },
     ],
   },
 } satisfies Record<string, Project>;

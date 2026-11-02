@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowUpRightIcon } from "@phosphor-icons/react/ssr";
+import { getRepositoryLanguages } from "@/lib/github";
 import type { Project } from "@/lib/projects";
 import ProjectArtwork from "./ProjectArtwork";
+import ProjectLanguageChart from "./ProjectLanguageChart";
+import ProjectWorkflow from "./ProjectWorkflow";
 
-export default function CaseStudy({ project }: { project: Project }) {
+export default async function CaseStudy({ project }: { project: Project }) {
+  const languages = await getRepositoryLanguages(project.repository);
+
   return (
     <article className="mx-auto max-w-xl px-6 pb-16">
       <header className="mt-10">
@@ -43,6 +48,34 @@ export default function CaseStudy({ project }: { project: Project }) {
           </p>
         </section>
       </div>
+      <section className="mt-8 border-t border-border pt-6">
+        <h2 className="text-xs font-medium uppercase text-text-subtle">
+          Project flow
+        </h2>
+        <p className="mt-2 text-xs text-text-muted">
+          Explore how the main parts connect.
+        </p>
+        <div className="mt-4">
+          <ProjectWorkflow steps={project.workflow} title={project.title} />
+        </div>
+      </section>
+      <section className="mt-8 border-t border-border pt-6">
+        <h2 className="text-xs font-medium uppercase text-text-subtle">
+          Repository languages
+        </h2>
+        <p className="mt-2 text-xs text-text-muted">
+          Relative code size by language, sourced from GitHub.
+        </p>
+        {languages ? (
+          <div className="mt-3">
+            <ProjectLanguageChart data={languages} title={project.title} />
+          </div>
+        ) : (
+          <p className="mt-4 text-xs text-text-subtle">
+            Language data is currently unavailable.
+          </p>
+        )}
+      </section>
       <section className="mt-8 border-t border-border pt-6">
         <h2 className="text-xs font-medium uppercase text-text-subtle">
           Highlights

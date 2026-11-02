@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --color-*: initial;
@@ -47,6 +52,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-foreground: var(--color-text);
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
   --font-geist-pixel: var(--font-geist-pixel);
@@ -60,10 +66,64 @@
   --font-geist-serif-square: var(--font-geist-serif-square);
   --font-geist-serif-triangle: var(--font-geist-serif-triangle);
   --font-geist-serif-heart: var(--font-geist-serif-heart);
+  --animate-hello-effect-draw: hello-effect-draw
+    var(--hello-effect-duration, 1s) var(--hello-effect-ease, ease-in-out)
+    var(--hello-effect-delay, 0s) both;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  @keyframes hello-effect-draw {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+  }
 }
 
 :root {
   color-scheme: dark;
+  --color-border: #353c3e;
+  --color-accent: #f16b52;
+  --color-accent-foreground: #15191b;
 
   /* Semantic aliases */
   --page: var(--color-page);
@@ -92,6 +152,90 @@
 
   --font-body: var(--font-geist-sans);
   --font-code: var(--font-geist-mono);
+  --background: var(--color-page);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-accent-foreground);
+  --secondary: var(--color-surface-raised);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-surface-raised);
+  --muted-foreground: var(--color-text-muted);
+  --destructive: var(--color-accent-active);
+  --input: var(--color-border);
+  --ring: var(--color-focus);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-page: #f4f4ef;
+  --color-surface: #ffffff;
+  --color-surface-raised: #e9ebe5;
+  --color-surface-overlay: #dfe2da;
+  --color-border: #d5d9d2;
+  --color-border-control: #9aa39a;
+  --color-border-strong: #707c74;
+  --color-text: #1b2422;
+  --color-text-muted: #4a5853;
+  --color-text-subtle: #64716c;
+  --color-text-inverse: #ffffff;
+  --color-accent: #c44731;
+  --color-accent-hover: #ad3b29;
+  --color-accent-active: #8e3023;
+  --color-accent-soft: #f2dfda;
+  --color-accent-foreground: #ffffff;
+  --color-focus: #79620d;
+  --color-selection: #efd2ca;
+  --color-selection-foreground: #1b2422;
+
+  --page: var(--color-page);
+  --surface: var(--color-surface);
+  --surface-raised: var(--color-surface-raised);
+  --surface-overlay: var(--color-surface-overlay);
+  --border: var(--color-border);
+  --border-control: var(--color-border-control);
+  --border-strong: var(--color-border-strong);
+  --text: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --text-subtle: var(--color-text-subtle);
+  --text-inverse: var(--color-text-inverse);
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-hover);
+  --accent-active: var(--color-accent-active);
+  --accent-soft: var(--color-accent-soft);
+  --accent-foreground: var(--color-accent-foreground);
+  --focus: var(--color-focus);
+  --selection: var(--color-selection);
+  --selection-foreground: var(--color-selection-foreground);
+}
+
+.theme-toggle-light {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle-dark {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle-light {
+  display: inline-flex;
 }
 
 *,
@@ -143,5 +287,77 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .react-flow__edge.animated path {
+    animation: none !important;
+  }
+}
+
+.react-flow__controls {
+  overflow: hidden;
+  border: 1px solid var(--border) !important;
+  border-radius: 0.375rem !important;
+  box-shadow: none !important;
+}
+
+.react-flow__controls-button {
+  border-bottom: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  fill: var(--text-muted) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-raised) !important;
+}
+
+.react-flow__attribution {
+  background: var(--surface) !important;
+  color: var(--text-subtle) !important;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }

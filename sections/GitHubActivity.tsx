@@ -44,6 +44,7 @@ export default async function GitHubActivity() {
     <section
       aria-labelledby="github-activity-title"
       className="mx-auto max-w-xl px-6 pb-16"
+      id="activity"
     >
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-3">
         <div>

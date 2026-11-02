@@ -8,17 +8,18 @@ import {
   UserCircleIcon,
   WrenchIcon,
 } from "@phosphor-icons/react";
+import ThemeToggle from "../theme/ThemeToggle";
 
 const links = [
-  { label: "about", href: "#about", icon: UserCircleIcon },
-  { label: "works", href: "#works", icon: BriefcaseIcon },
-  { label: "services", href: "#services", icon: WrenchIcon },
+  { label: "about", href: "/about", icon: UserCircleIcon },
+  { label: "work", href: "/#works", icon: BriefcaseIcon },
   {
     label: "experience",
-    href: "#experience",
+    href: "/#experience",
     icon: ClockCounterClockwiseIcon,
   },
-  { label: "contract", href: "#contract", icon: FileTextIcon },
+  { label: "activity", href: "/#activity", icon: WrenchIcon },
+  { label: "contact", href: "/#contract", icon: FileTextIcon },
 ];
 
 type NavigationLink = (typeof links)[number];
@@ -29,15 +30,15 @@ function NavigationItem({ link }: { link: NavigationLink }) {
   return (
     <li>
       <Link
-        className="group inline-flex min-h-9 items-center gap-1.5 px-2.5 text-xs font-medium capitalize text-text-muted transition-colors duration-200  hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:px-3 sm:text-sm "
+        className="group inline-flex min-h-9 items-center gap-0.5 px-0.5 text-[10px] font-medium capitalize text-text-muted transition-colors duration-200 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:gap-1.5 sm:px-2 sm:text-xs"
         href={link.href}
       >
         <Icon
           aria-hidden="true"
           className="transition-colors group-hover:text-accent"
-          size={16}
+          size={14}
         />
-        <span>{link.label}</span>
+        <span className="max-[360px]:sr-only">{link.label}</span>
       </Link>
     </li>
   );
@@ -45,15 +46,18 @@ function NavigationItem({ link }: { link: NavigationLink }) {
 
 export default function Navigation() {
   return (
-    <nav
-      aria-label="Main navigation"
-      className="mx-auto my-3 w-fit max-w-[calc(100%-2rem)] "
-    >
-      <ul className="flex flex-wrap items-center justify-center gap-4 ">
-        {links.map((link) => (
-          <NavigationItem key={link.label} link={link} />
-        ))}
-      </ul>
-    </nav>
+    <div className="sticky top-0 z-50 flex w-full justify-center px-3 pt-3 pointer-events-none">
+      <nav
+        aria-label="Main navigation"
+        className="pointer-events-auto flex h-11 w-fit max-w-full items-center gap-1 rounded-md border border-border bg-surface/95 px-1 py-1 shadow-sm backdrop-blur-md"
+      >
+        <ul className="flex items-center gap-0 sm:gap-1">
+          {links.map((link) => (
+            <NavigationItem key={link.label} link={link} />
+          ))}
+        </ul>
+        <ThemeToggle />
+      </nav>
+    </div>
   );
 }

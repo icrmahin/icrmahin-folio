@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type PointerEvent } from "react";
+import Link from "next/link";
 import {
   AnimatePresence,
   motion,
@@ -55,28 +56,37 @@ function QuestionMark() {
     return () => window.clearInterval(interval);
   }, [isHovered, reduceMotion]);
 
-  function trackPointer(event: PointerEvent<HTMLDivElement>) {
+  function trackPointer(event: PointerEvent<HTMLAnchorElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
     pointerX.set(event.clientX - bounds.left + 14);
     pointerY.set(event.clientY - bounds.top + 14);
   }
 
   return (
-    <div
-      aria-hidden="true"
-      className="group relative grid cursor-default text-[150px] leading-none"
+    <Link
+      aria-label="Read about Mahin"
+      className="group relative grid cursor-pointer text-[150px] leading-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
+      href="/about"
       onPointerEnter={(event) => {
         setFontIndex(0);
         setIsHovered(true);
         trackPointer(event);
       }}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
       onPointerLeave={() => setIsHovered(false)}
       onPointerMove={trackPointer}
     >
-      <span className="col-start-1 row-start-1 font-geist-pixel-grid transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+      <span
+        aria-hidden="true"
+        className="col-start-1 row-start-1 font-geist-pixel-grid transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+      >
         ?
       </span>
-      <span className="col-start-1 row-start-1 font-geist-pixel-triangle opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+      <span
+        aria-hidden="true"
+        className="col-start-1 row-start-1 font-geist-pixel-triangle opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+      >
         ?
       </span>
       <AnimatePresence>
@@ -107,7 +117,7 @@ function QuestionMark() {
           </motion.span>
         )}
       </AnimatePresence>
-    </div>
+    </Link>
   );
 }
 

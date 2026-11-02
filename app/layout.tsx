@@ -19,6 +19,13 @@ import {
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Navigation from "../components/nav/Navigation";
+import Footer from "../sections/Footer";
+import SiteIntro from "../components/app/SiteIntro";
+import ThemeProvider from "../components/theme/ThemeProvider";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +41,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#15191b",
-  colorScheme: "dark",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -45,11 +52,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixel.variable} ${GeistPixelSquare.variable} ${GeistPixelGrid.variable} ${GeistPixelCircle.variable} ${GeistPixelTriangle.variable} ${GeistPixelLine.variable} ${GeistSerif.variable} ${GeistSerifRegular.variable} ${GeistSerifSquare.variable} ${GeistSerifTriangle.variable} ${GeistSerifHeart.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={cn("h-full", "antialiased", GeistSans.variable, GeistMono.variable, GeistPixel.variable, GeistPixelSquare.variable, GeistPixelGrid.variable, GeistPixelCircle.variable, GeistPixelTriangle.variable, GeistPixelLine.variable, GeistSerif.variable, GeistSerifRegular.variable, GeistSerifSquare.variable, GeistSerifTriangle.variable, GeistSerifHeart.variable, "font-sans", geist.variable)}
     >
-      <body className="mx-auto flex min-h-screen w-full flex-col  ">
-        <Navigation />
-        <main className="w-full flex-1">{children}</main>
+      <body className="mx-auto flex min-h-screen w-full flex-col">
+        <ThemeProvider>
+          <Navigation />
+          <main className="w-full flex-1">
+            <SiteIntro>{children}</SiteIntro>
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
