@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+
+  /* Surfaces */
+  --color-page: #15191b;
+  --color-surface: #22282a;
+  --color-surface-raised: #292f31;
+  --color-surface-overlay: #303739;
+
+  /* Borders */
+  --color-border: #353c3e;
+  --color-border-control: #697577;
+  --color-border-strong: #858f90;
+
+  /* Text */
+  --color-text: #eae7df;
+  --color-text-muted: #aeb6b5;
+  --color-text-subtle: #818c8d;
+  --color-text-inverse: #15191b;
+
+  /* Signal Vermilion */
+  --color-accent: #f16b52;
+  --color-accent-hover: #ff896f;
+  --color-accent-active: #d95740;
+  --color-accent-soft: #3a2724;
+  --color-accent-foreground: #15191b;
+
+  /* Focus and selection */
+  --color-focus: #d7c68f;
+  --color-selection: #694237;
+  --color-selection-foreground: #eae7df;
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+  --font-geist-pixel: var(--font-geist-pixel);
+  --font-geist-pixel-square: var(--font-geist-pixel-square);
+  --font-geist-pixel-grid: var(--font-geist-pixel-grid);
+  --font-geist-pixel-circle: var(--font-geist-pixel-circle);
+  --font-geist-pixel-triangle: var(--font-geist-pixel-triangle);
+  --font-geist-pixel-line: var(--font-geist-pixel-line);
+  --font-geist-serif: var(--font-geist-serif);
+  --font-geist-serif-regular: var(--font-geist-serif-regular);
+  --font-geist-serif-square: var(--font-geist-serif-square);
+  --font-geist-serif-triangle: var(--font-geist-serif-triangle);
+  --font-geist-serif-heart: var(--font-geist-serif-heart);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Semantic aliases */
+  --page: var(--color-page);
+  --surface: var(--color-surface);
+  --surface-raised: var(--color-surface-raised);
+  --surface-overlay: var(--color-surface-overlay);
+
+  --border: var(--color-border);
+  --border-control: var(--color-border-control);
+  --border-strong: var(--color-border-strong);
+
+  --text: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --text-subtle: var(--color-text-subtle);
+  --text-inverse: var(--color-text-inverse);
+
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-hover);
+  --accent-active: var(--color-accent-active);
+  --accent-soft: var(--color-accent-soft);
+  --accent-foreground: var(--color-accent-foreground);
+
+  --focus: var(--color-focus);
+  --selection: var(--color-selection);
+  --selection-foreground: var(--color-selection-foreground);
+
+  --font-body: var(--font-geist-sans);
+  --font-code: var(--font-geist-mono);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--page);
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--selection-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
