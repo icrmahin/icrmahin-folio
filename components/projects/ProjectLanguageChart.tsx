@@ -9,7 +9,7 @@ import { scaleOrdinal } from "@tanstack/charts/scales/ordinal";
 import { tooltip } from "@tanstack/charts/tooltip";
 import type { RepositoryLanguage } from "@/lib/github";
 
-const palette = ["#f16b52", "#d7c68f", "#858f90", "#c35a45", "#aeb6b5"];
+const palette = ["#f16b52", "#5E6AD2", "#8A8F98", "#23252A", "#161718"];
 
 export default function ProjectLanguageChart({
   data,

@@ -134,7 +134,7 @@ export default function Hero() {
             Hi.
           </div>
           <div className="text-4xl font-geist-sans">it&apos;s Mahin.</div>
-          <div className="text-lg text-[#ffffff]/30 font-geist-serif-triangle italic">
+          <div className="text-lg text-[#F4F5F8]/30 font-geist-serif-triangle italic">
             Resilience · Adaptability · Autonomy
           </div>
           <div className="mt-5 flex flex-wrap gap-2">
