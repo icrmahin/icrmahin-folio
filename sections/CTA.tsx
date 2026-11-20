@@ -6,7 +6,7 @@ export default function CTA() {
       <div>
         <p className="eyebrow">Have a product to build?</p>
         <h2 id="contact-title">
-          Let's make something <em>useful.</em>
+          Let&apos;s make something <em>useful.</em>
         </h2>
         <p className="contact-section__note">
           Have a product idea, a design problem or an engineering challenge?
