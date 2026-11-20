@@ -57,10 +57,14 @@ The unused source components are left in the repository for this pass; they are 
 - Repository documentation, asset credits, contribution guidance, changelog and an MIT license scoped to source code.
 - GitHub Actions checks for installation, lint, TypeScript and production build.
 
-## Verification limits and deployment handoff
+## Verification and deployment handoff
 
-A Vercel project named `icrmahin` has been created in the `icrmahin` Hobby team and linked to this repository. Vercel assigned and verified `https://icrmahin.vercel.app` as its project domain. The project uses Node.js 24, Next.js auto-detection and pnpm 12.15.0. `NEXT_PUBLIC_SITE_URL` is configured as `https://icrmahin.vercel.app` for production, preview and development; the source fallback matches it.
+A Vercel project named `icrmahin` is linked to this repository in the `icrmahin` Hobby team. Its verified project domain is `https://icrmahin.vercel.app`. The project uses Node.js 24, Next.js auto-detection and pnpm 12.15.0. `NEXT_PUBLIC_SITE_URL` is configured for production, preview and development, and the source fallback matches the public domain.
 
-The first Vercel build completed successfully from commit `8d8a3aa55c67723ca2da4351a6e36b3184ebee75` on `portfolio/evolution`. That deployment became the initial production deployment because the Vercel deployment API inferred a production target from the request. The site has not yet had a visual/browser or Lighthouse review. Treat this as an initial publication, not a completed quality audit.
+The production deployment is **READY** at `https://icrmahin.vercel.app`. It was built from `portfolio/evolution`, commit `5f8b4bc95fb32f5b5391b587c6adcd6dfedbb789`. The project’s configured production branch remains `main`; this release was deployed directly from the working branch because publication was requested. The existing draft pull request (#1) remains unmerged, and `main` was not modified.
 
-A local pnpm install/build was not run in the assistant's container because it could not resolve GitHub for a clone. GitHub Actions run #6 for commit `d7f027b79addeb37ec03bf7130077f02e43d0a0a` completed successfully: frozen dependency install, ESLint, TypeScript and the optimized Next.js production build. The production Vercel site has still not been visually audited or checked with Lighthouse because the browser inspection service could not retrieve the host.
+HTTP smoke checks against the public domain returned 200 for the homepage, About page, Hibbullah case study, WOLFVANE case study, Hibbullah Landing case study, `/sitemap.xml` and `/robots.txt`. The returned HTML uses the correct canonical origin and does not reference the old `icrmahin-chi.vercel.app` host. The sitemap lists the current public routes and robots.txt points to the matching sitemap.
+
+The Vercel production build completed successfully, including Next.js compilation, TypeScript checks and static page generation. GitHub Actions run #6 for the earlier commit `d7f027b79addeb37ec03bf7130077f02e43d0a0a` also passed frozen dependency install, ESLint, TypeScript and production build. A GitHub Actions run was not returned for the final release commit. The site has **not** been visually reviewed in a browser and no Lighthouse/performance audit has been run; the HTTP checks are not a substitute for those audits.
+
+A local pnpm install/build was not run in the assistant's container because it could not resolve GitHub for a clone. No performance, user-count, revenue, conversion or business outcome metrics are claimed.
