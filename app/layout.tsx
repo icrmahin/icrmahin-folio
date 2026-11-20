@@ -8,8 +8,7 @@ import Navigation from "@/components/nav/Navigation";
 import Footer from "@/sections/Footer";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { cn } from "@/lib/utils";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+import { siteUrl } from "@/lib/site";
 
 const siteDescription =
   "A. Mahin is an independent product engineer and builder working across product thinking, interface design and practical software engineering.";

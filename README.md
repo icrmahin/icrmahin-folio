@@ -42,7 +42,7 @@ Copy `.env.example` to `.env.local` when running locally.
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Production | Exact canonical origin of the deployed website, without a trailing slash. Used for metadata, structured data and sitemap URLs. |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical origin override. Defaults to the repository homepage `https://icrmahin-chi.vercel.app`. Set this only when deploying to a different canonical/custom domain. |
 
 Do not set the production URL to a guessed Vercel domain. Use the actual production domain shown in the Vercel project settings.
 
@@ -84,7 +84,7 @@ Case-study copy is maintained in `lib/projects.ts`. The design uses original HTM
 
 ## Deployment
 
-Deploy the repository through Vercel using the standard Next.js preset. Configure `NEXT_PUBLIC_SITE_URL` with the exact production origin in the Vercel environment settings, then redeploy. Confirm the production domain, sitemap, robots file and social preview after deployment.
+Deploy the repository through Vercel using the standard Next.js preset. The repository homepage is currently set to `https://icrmahin-chi.vercel.app`, which is the default canonical origin. Set `NEXT_PUBLIC_SITE_URL` in Vercel only when using a different canonical/custom domain. Confirm the production domain, sitemap, robots file and social preview after deployment.
 
 ## License
 

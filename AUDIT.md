@@ -59,8 +59,8 @@ The unused source components are left in the repository for this pass; they are 
 
 ## Verification limits and deployment handoff
 
-The repository does not contain a Vercel project file, a custom-domain file or a production URL in its README. The repository-name Vercel URL could not be confirmed by the available site check. The production website therefore has **not** been visually audited in this pass.
+The GitHub repository homepage field identifies the production URL as `https://icrmahin-chi.vercel.app`. The repository does not contain a Vercel project config or a custom-domain file. The available browser inspection service could not retrieve that host, so the production website has **not** been visually audited in this pass.
 
-Set `NEXT_PUBLIC_SITE_URL` in Vercel to the exact production origin (for example, the owner's real custom domain or confirmed Vercel domain). Then inspect the Vercel preview/production deployment and run Lighthouse against the actual URL. Do not use a guessed domain for canonical metadata or sitemap output.
+The app now uses `https://icrmahin-chi.vercel.app` as its default canonical origin. Set `NEXT_PUBLIC_SITE_URL` in Vercel only when using a different canonical/custom domain. A successful browser/Lighthouse review still needs the production deployment to be reachable.
 
 The container could not resolve GitHub for a local clone, so a local pnpm install/build could not be run in this environment. GitHub Actions is added to run those checks after the branch is pushed. A successful production build and Vercel preview must be confirmed before merging.

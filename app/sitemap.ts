@@ -1,11 +1,8 @@
 import type { MetadataRoute } from "next";
 import { featuredProjects } from "@/lib/projects";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (!siteUrl) return [];
-
   const paths = [
     { path: "", priority: 1 },
     { path: "/about", priority: 0.7 },
