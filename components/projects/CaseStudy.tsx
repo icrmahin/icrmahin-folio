@@ -1,109 +1,113 @@
 import Link from "next/link";
-import { ArrowLeftIcon, ArrowUpRightIcon } from "@phosphor-icons/react/ssr";
-import { getRepositoryLanguages } from "@/lib/github";
+import {
+  ArrowLeftIcon,
+  ArrowUpRightIcon,
+} from "@phosphor-icons/react/ssr";
 import type { Project } from "@/lib/projects";
-import ProjectArtwork from "./ProjectArtwork";
-import ProjectLanguageChart from "./ProjectLanguageChart";
-import ProjectWorkflow from "./ProjectWorkflow";
+import ProjectArtwork from "@/components/projects/ProjectArtwork";
 
-export default async function CaseStudy({ project }: { project: Project }) {
-  const languages = await getRepositoryLanguages(project.repository);
-
+export default function CaseStudy({ project }: { project: Project }) {
   return (
-    <article className="mx-auto max-w-xl px-6 pb-16">
-      <header className="mt-10">
-        <div className="flex justify-between">
-          <p className="text-xs text-accent">{project.category}</p>
-          <Link
-            className="inline-flex items-center gap-2 text-xs text-text-muted transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-            href="/#works"
-          >
-            <ArrowLeftIcon aria-hidden="true" size={14} />
-            Back
-          </Link>
+    <article className="shell case-study">
+      <Link className="case-study__back" href="/#work">
+        <ArrowLeftIcon aria-hidden="true" size={14} />
+        Back to selected work
+      </Link>
+
+      <header className="case-study__hero">
+        <div>
+          <p className="eyebrow">{project.category}</p>
+          <h1>{project.title}</h1>
+          <p className="case-study__lede">{project.description}</p>
+          <dl className="case-study__meta">
+            <div>
+              <dt>Contribution</dt>
+              <dd>{project.contribution}</dd>
+            </div>
+            <div>
+              <dt>Technology</dt>
+              <dd>{project.technologies.join(" · ")}</dd>
+            </div>
+          </dl>
         </div>
-        <h1 className="mt-2 text-3xl font-medium text-text">{project.title}</h1>
-        <p className="mt-3 text-sm leading-relaxed text-text-muted">
-          {project.description}
-        </p>
+        <div className="case-study__art">
+          <ProjectArtwork visual={project.visual} />
+          <p className="case-study__art-note">
+            Portfolio illustration — not a production screenshot or live product data.
+          </p>
+        </div>
       </header>
-      <div className="mt-8 overflow-hidden rounded-md border border-border">
-        <ProjectArtwork visual={project.visual} />
-      </div>
-      <div className="mt-8 grid gap-6 border-t border-border pt-6 sm:grid-cols-2">
-        <section>
-          <h2 className="text-xs font-medium uppercase text-text-subtle">
-            Overview
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-text-muted">
-            {project.overview}
-          </p>
-        </section>
-        <section>
-          <h2 className="text-xs font-medium uppercase text-text-subtle">
-            Implementation
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-text-muted">
-            {project.implementation}
-          </p>
-        </section>
-      </div>
-      <section className="mt-8 border-t border-border pt-6">
-        <h2 className="text-xs font-medium uppercase text-text-subtle">
-          Project flow
-        </h2>
-        <p className="mt-2 text-xs text-text-muted">
-          Explore how the main parts connect.
-        </p>
-        <div className="mt-4">
-          <ProjectWorkflow steps={project.workflow} title={project.title} />
+
+      <section aria-labelledby="overview-title" className="case-block">
+        <div>
+          <p className="eyebrow">01 / Overview</p>
+          <h2 id="overview-title">The product</h2>
+        </div>
+        <div className="case-block__body">{project.overview}</div>
+      </section>
+
+      <section aria-labelledby="context-title" className="case-block">
+        <div>
+          <p className="eyebrow">02 / Context</p>
+          <h2 id="context-title">The problem to solve</h2>
+        </div>
+        <div className="case-block__body">{project.context}</div>
+      </section>
+
+      <section aria-labelledby="approach-title" className="case-block">
+        <div>
+          <p className="eyebrow">03 / Decisions</p>
+          <h2 id="approach-title">How it was approached</h2>
+        </div>
+        <div className="case-approach">
+          {project.approach.map((step, index) => (
+            <article key={step.title}>
+              <p className="eyebrow">Decision / {String(index + 1).padStart(2, "0")}</p>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
         </div>
       </section>
-      <section className="mt-8 border-t border-border pt-6">
-        <h2 className="text-xs font-medium uppercase text-text-subtle">
-          Repository languages
-        </h2>
-        <p className="mt-2 text-xs text-text-muted">
-          Relative code size by language, sourced from GitHub.
-        </p>
-        {languages ? (
-          <div className="mt-3">
-            <ProjectLanguageChart data={languages} title={project.title} />
-          </div>
-        ) : (
-          <p className="mt-4 text-xs text-text-subtle">
-            Language data is currently unavailable.
-          </p>
-        )}
-      </section>
-      <section className="mt-8 border-t border-border pt-6">
-        <h2 className="text-xs font-medium uppercase text-text-subtle">
-          Highlights
-        </h2>
-        <ul className="mt-3 space-y-2">
-          {project.highlights.map((highlight) => (
-            <li className="text-sm text-text-muted" key={highlight}>
-              {highlight}
-            </li>
+
+      <section aria-labelledby="capabilities-title" className="case-block">
+        <div>
+          <p className="eyebrow">04 / Capabilities</p>
+          <h2 id="capabilities-title">What it includes</h2>
+        </div>
+        <ul className="case-list">
+          {project.capabilities.map((capability) => (
+            <li key={capability}>{capability}</li>
           ))}
         </ul>
       </section>
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-        <ul className="flex flex-wrap gap-2 text-xs text-text-subtle">
-          {project.technologies.map((technology) => (
-            <li key={technology}>{technology}</li>
+
+      <section aria-labelledby="engineering-title" className="case-block">
+        <div>
+          <p className="eyebrow">05 / Implementation</p>
+          <h2 id="engineering-title">Engineering notes</h2>
+        </div>
+        <ul className="case-list">
+          {project.engineeringNotes.map((note) => (
+            <li key={note}>{note}</li>
           ))}
         </ul>
+      </section>
+
+      <footer className="case-study__footer">
+        <div>
+          <p>Want to review the implementation?</p>
+          <p className="mt-1 text-text-subtle">The source repository is public.</p>
+        </div>
         <a
-          className="inline-flex items-center gap-2 text-xs font-medium text-text transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          className="button button--quiet"
           href={project.repository}
           rel="noreferrer"
           target="_blank"
         >
-          View source
-          <ArrowUpRightIcon aria-hidden="true" size={14} />
+          View source <ArrowUpRightIcon aria-hidden="true" size={15} />
         </a>
-      </div>
+      </footer>
     </article>
   );
 }

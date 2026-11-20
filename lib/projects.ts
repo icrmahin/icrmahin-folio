@@ -1,74 +1,165 @@
+export type ProjectVisual = "storefront" | "landing" | "editor";
+
+export type ProjectApproach = {
+  title: string;
+  description: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
   category: string;
   description: string;
-  visual: "storefront" | "operations" | "landing" | "editor";
+  visual: ProjectVisual;
   technologies: readonly string[];
   repository: string;
+  contribution: string;
   overview: string;
-  implementation: string;
-  highlights: readonly string[];
-  workflow: readonly WorkflowStep[];
+  context: string;
+  approach: readonly ProjectApproach[];
+  capabilities: readonly string[];
+  engineeringNotes: readonly string[];
 };
 
-export type WorkflowStep = {
-  id: string;
-  title: string;
-  description: string;
-  input: boolean;
-  output: boolean;
-};
-
-// Project data
 export const projects = {
   hibbullah: {
     slug: "hibbullah",
     title: "Hibbullah",
-    category: "Mobile commerce",
+    category: "Mobile product / Pharmacy commerce",
     description:
-      "A pharmacy shopping app with distinct customer and shop-management experiences.",
+      "One Android-first product connecting a customer pharmacy storefront with the tools that run the shop.",
     visual: "storefront",
-    technologies: ["Expo", "React Native", "Supabase"],
-    repository: "https://github.com/icrmahin/hibbullah",
-    overview:
-      "Hibbullah combines a customer shopping flow with separate authentication and administration routes for pharmacy operations.",
-    implementation:
-      "The mobile app uses Expo Router to separate customer, authentication, and admin areas, with Supabase for backend integration.",
-    highlights: [
-      "Customer and shop administration routes",
-      "Expo Router navigation",
-      "Supabase integration",
+    technologies: [
+      "Expo",
+      "React Native",
+      "Expo Router",
+      "Supabase",
+      "PostgreSQL",
+      "Cloudinary",
     ],
-    workflow: [
+    repository: "https://github.com/icrmahin/hibbullah",
+    contribution: "Product design and end-to-end engineering",
+    overview:
+      "Hibbullah is a single-vendor pharmacy product with a customer shopping experience and an operations back office in the same Expo application. The customer side supports product discovery, search, cart, checkout, order tracking and return requests. The admin side supports catalogue, inventory, orders, customers and reporting.",
+    context:
+      "A pharmacy product needs to serve two very different jobs: help customers find and order medicines, while giving the shop a dependable way to manage stock and fulfil those orders. Those experiences share the same product data and business rules.",
+    approach: [
       {
-        id: "customer",
-        title: "Customer app",
-        description: "Browse the pharmacy",
-        input: false,
-        output: true,
+        title: "One application, two workspaces",
+        description:
+          "Expo Router separates customer, authentication and admin areas while keeping them in one React Native codebase. The customer journey and shop workflows can evolve without becoming disconnected products.",
       },
       {
-        id: "catalog",
-        title: "Product catalog",
-        description: "Explore available products",
-        input: true,
-        output: true,
+        title: "Keep critical rules on the backend",
+        description:
+          "Supabase and PostgreSQL handle core search, order creation, reports and stock movement. The client is not responsible for recalculating inventory or other critical business rules.",
       },
       {
-        id: "backend",
-        title: "Supabase",
-        description: "App data and services",
-        input: true,
-        output: true,
+        title: "Model stock as inventory, not a counter",
+        description:
+          "Inventory is tracked in batches with expiry dates and auditable adjustments. Order lines retain price snapshots, and stock movement is handled through server-side database logic.",
+      },
+    ],
+    capabilities: [
+      "Customer catalogue, search, favourites and cart",
+      "Checkout, order tracking and return requests",
+      "Admin catalogue and inventory-batch management",
+      "Order, customer and return workflows",
+      "Sales and inventory reporting",
+      "Product media stored through Cloudinary",
+    ],
+    engineeringNotes: [
+      "Expo / React Native with Expo Router for customer and admin routes",
+      "Supabase PostgreSQL for persistent data and server-side business logic",
+      "Batch-aware inventory with expiry dates and auditable stock adjustments",
+      "Cloudinary for image storage, keeping media separate from application records",
+    ],
+  },
+  wolfvane: {
+    slug: "wolfvane-zed-theme",
+    title: "WOLFVANE for Zed",
+    category: "Developer tool / Editor theme",
+    description:
+      "A dark editor theme built around a restrained graphite interface and a deliberate syntax hierarchy.",
+    visual: "editor",
+    technologies: ["Zed", "Theme JSON", "Color systems"],
+    repository: "https://github.com/icrmahin/WOLFVANE-Zed-Theme",
+    contribution: "Visual system and theme implementation",
+    overview:
+      "WOLFVANE is a dark theme for the Zed editor. It uses a graphite base and assigns distinct colors to syntax roles so code structure is easier to scan without turning the editor into a high-saturation palette.",
+    context:
+      "A theme has to do more than look attractive in a screenshot. Its colors need to create a consistent hierarchy across keywords, properties, functions, types, strings and comments while keeping the editor comfortable for long sessions.",
+    approach: [
+      {
+        title: "Start with a quiet base",
+        description:
+          "The interface uses restrained graphite surfaces so syntax colors carry the hierarchy instead of competing with the editor chrome.",
       },
       {
-        id: "shop",
-        title: "Shop admin",
-        description: "Manage pharmacy operations",
-        input: true,
-        output: false,
+        title: "Give syntax roles distinct signals",
+        description:
+          "Coral keywords, orange properties, purple functions, blue types and constants, light-blue strings and muted italic comments separate code roles without using color indiscriminately.",
       },
+      {
+        title: "Keep the extension lightweight",
+        description:
+          "The project is a theme-only Zed extension. The theme is defined in JSON and does not require a Rust or WASM runtime.",
+      },
+    ],
+    capabilities: [
+      "Dark graphite editor surfaces",
+      "Distinct colors for common syntax roles",
+      "Coordinated treatment for strings, comments and constants",
+      "Theme-only implementation using Zed's theme schema",
+    ],
+    engineeringNotes: [
+      "Theme configuration authored as JSON",
+      "Color hierarchy designed around syntax semantics",
+      "Local installation through Zed's themes directory",
+    ],
+  },
+  hibbullahLanding: {
+    slug: "hibbullah-landing",
+    title: "Hibbullah Landing",
+    category: "Product site / Landing page",
+    description:
+      "A lightweight public-facing product page introducing the Hibbullah Android pharmacy application.",
+    visual: "landing",
+    technologies: ["Semantic HTML", "Vanilla CSS", "Vanilla JavaScript"],
+    repository: "https://github.com/icrmahin/hibbullah-landing",
+    contribution: "Product-page design and frontend implementation",
+    overview:
+      "A responsive, static landing page that introduces Hibbullah outside the mobile application. It is intentionally built without a framework, build tool or runtime dependency.",
+    context:
+      "The mobile product needed a simple public entry point where people could understand what the app does before opening or installing it. The page had to remain lightweight and easy to host.",
+    approach: [
+      {
+        title: "Use the browser platform directly",
+        description:
+          "The page is implemented with semantic HTML, vanilla CSS and vanilla JavaScript instead of introducing a framework for a focused static experience.",
+      },
+      {
+        title: "Keep the story focused",
+        description:
+          "The page is organized around product, feature and download information so visitors can understand the mobile app without navigating a complex marketing site.",
+      },
+      {
+        title: "Design for small screens first",
+        description:
+          "The layout adapts to mobile and desktop while keeping the core product message and calls to action clear.",
+      },
+    ],
+    capabilities: [
+      "Responsive product presentation",
+      "Focused product and feature sections",
+      "Static hosting without a build pipeline",
+      "Direct relationship to the Hibbullah Android product",
+    ],
+    engineeringNotes: [
+      "Semantic HTML for document structure",
+      "Vanilla CSS for layout and responsive behavior",
+      "Vanilla JavaScript for lightweight interaction",
+      "No framework or runtime dependency",
     ],
   },
   sifaPharma: {
@@ -76,153 +167,23 @@ export const projects = {
     title: "Sifa Pharma",
     category: "Pharmacy operations",
     description:
-      "A pharmacy platform for customer ordering, inventory, and shop operations.",
-    visual: "operations",
+      "A pharmacy platform for customer ordering, inventory and shop operations.",
+    visual: "storefront",
     technologies: ["Expo", "React Native", "Supabase"],
     repository: "https://github.com/icrmahin/Sifa-Pharma",
+    contribution: "Project details pending source verification",
     overview:
-      "Sifa Pharma brings customer ordering and pharmacy administration into one mobile product, with separate customer and admin areas.",
-    implementation:
-      "The app is built with Expo and React Native, connected to Supabase, and includes stock, invoice, and inventory workflows.",
-    highlights: [
-      "Customer and admin experiences",
-      "Realtime stock workflows",
-      "Invoice and inventory tools",
-    ],
-    workflow: [
-      {
-        id: "customer",
-        title: "Customer",
-        description: "Browse and place orders",
-        input: false,
-        output: true,
-      },
-      {
-        id: "orders",
-        title: "Orders",
-        description: "Create and track invoices",
-        input: true,
-        output: true,
-      },
-      {
-        id: "inventory",
-        title: "Inventory",
-        description: "Update stock status",
-        input: true,
-        output: true,
-      },
-      {
-        id: "admin",
-        title: "Pharmacy admin",
-        description: "Manage shop operations",
-        input: true,
-        output: false,
-      },
-    ],
-  },
-  hibbullahLanding: {
-    slug: "hibbullah-landing",
-    title: "Hibbullah Landing",
-    category: "Product website",
-    description:
-      "A responsive product showcase for the Hibbullah Android pharmacy app.",
-    visual: "landing",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    repository: "https://github.com/icrmahin/Hibbullah-landing-page",
-    overview:
-      "A product landing page introducing Hibbullah, an Android pharmacy shopping application.",
-    implementation:
-      "Built as a static React and TypeScript app with Vite and Tailwind CSS, organized into focused product, feature, and download sections.",
-    highlights: [
-      "Responsive product showcase",
-      "Reusable page sections",
-      "Static-site deployment",
-    ],
-    workflow: [
-      {
-        id: "product",
-        title: "Hibbullah app",
-        description: "Set the product context",
-        input: false,
-        output: true,
-      },
-      {
-        id: "overview",
-        title: "Overview",
-        description: "Introduce the service",
-        input: true,
-        output: true,
-      },
-      {
-        id: "showcase",
-        title: "Showcase",
-        description: "Present product features",
-        input: true,
-        output: true,
-      },
-      {
-        id: "download",
-        title: "Download",
-        description: "Link to the Android app",
-        input: true,
-        output: false,
-      },
-    ],
-  },
-  visqode: {
-    slug: "visqode",
-    title: "Visqode.nvim",
-    category: "Developer tools",
-    description:
-      "A soft dark theme family for Neovim, adapted from Zed's Voiton theme.",
-    visual: "editor",
-    technologies: ["Neovim", "Lua", "Treesitter"],
-    repository: "https://github.com/icrmahin/visqode.nvim",
-    overview:
-      "Visqode is a configurable Neovim theme with dark, rose, cyan, and violet variants.",
-    implementation:
-      "Written in Lua, the theme coordinates editor syntax colors with common Neovim plugin interfaces and terminal colors.",
-    highlights: [
-      "Four coordinated color variants",
-      "Configurable transparency and terminal colors",
-      "Highlights for common Neovim plugins",
-    ],
-    workflow: [
-      {
-        id: "options",
-        title: "Theme options",
-        description: "Choose style and settings",
-        input: false,
-        output: true,
-      },
-      {
-        id: "variants",
-        title: "Color variants",
-        description: "Dark, rose, cyan, violet",
-        input: true,
-        output: true,
-      },
-      {
-        id: "syntax",
-        title: "Syntax groups",
-        description: "Apply editor colors",
-        input: true,
-        output: true,
-      },
-      {
-        id: "plugins",
-        title: "Plugin UI",
-        description: "Coordinate Neovim plugins",
-        input: true,
-        output: false,
-      },
-    ],
+      "This earlier portfolio entry is retained for reference, but its current source repository and project scope have not been verified in this audit.",
+    context:
+      "The available public repository inventory did not provide enough evidence to write a reliable case study for this project.",
+    approach: [],
+    capabilities: [],
+    engineeringNotes: [],
   },
 } satisfies Record<string, Project>;
 
-export const featuredProjects = [
+export const featuredProjects: readonly Project[] = [
   projects.hibbullah,
-  projects.sifaPharma,
+  projects.wolfvane,
   projects.hibbullahLanding,
-  projects.visqode,
 ];
