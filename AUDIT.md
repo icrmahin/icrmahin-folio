@@ -35,7 +35,7 @@ The main weakness is not the framework. It is the gap between the intended profe
 
 - The Hibbullah Landing repository README describes a static site made with semantic HTML, vanilla CSS and vanilla JavaScript. The existing portfolio incorrectly described it as React, TypeScript and Tailwind CSS. The portfolio entry is corrected.
 - The existing `Visqode.nvim` entry pointed to a repository that was not present in the owner's current public repository inventory. The currently available editor-theme repository is `WOLFVANE-Zed-Theme`; the featured entry is updated to that verifiable project and the old route redirects.
-- The current public repository inventory includes Hibbullah, Hibbullah Landing and WOLFVANE for Zed. The Sifa Pharma source link could not be verified from that inventory. It is removed from featured work and excluded from the sitemap/no-indexed while its status remains unconfirmed.
+- The current public repository inventory includes Hibbullah, Hibbullah Landing and WOLFVANE for Zed. The Sifa Pharma source link could not be verified from that inventory. It is removed from featured work and the sitemap; the old URL redirects to selected work until its source and scope are verified.
 - No performance, user-count, revenue, conversion or business outcome metrics were present in the inspected portfolio source. None are invented in this update.
 
 ## Remove from the primary experience
@@ -52,7 +52,7 @@ The unused source components are left in the repository for this pass; they are 
 - A cohesive editorial/neo-brutalist visual system with tactile paper-like compositions, implemented as original CSS/HTML rather than copied artwork.
 - Stronger home and About narratives for the agreed independent product engineer/builder positioning.
 - More evidence-led Hibbullah, Hibbullah Landing and WOLFVANE case studies.
-- An accessible top navigation, direct email contact, clear resume access and a useful footer.
+- An accessible top navigation, keyboard skip link, direct email contact, clear resume access and a useful footer.
 - Metadata, Open Graph image generation, Person/WebSite structured data, sitemap, robots and web manifest.
 - Repository documentation, asset credits, contribution guidance, changelog and an MIT license scoped to source code.
 - GitHub Actions checks for installation, lint, TypeScript and production build.
@@ -63,4 +63,4 @@ The GitHub repository homepage field identifies the production URL as `https://i
 
 The app now uses `https://icrmahin-chi.vercel.app` as its default canonical origin. Set `NEXT_PUBLIC_SITE_URL` in Vercel only when using a different canonical/custom domain. A successful browser/Lighthouse review still needs the production deployment to be reachable.
 
-The container could not resolve GitHub for a local clone, so a local pnpm install/build could not be run in this environment. GitHub Actions is added to run those checks after the branch is pushed. A successful production build and Vercel preview must be confirmed before merging.
+A local pnpm install/build was not run in the assistant's container because it could not resolve GitHub for a clone. GitHub Actions run #6 for commit `d7f027b79addeb37ec03bf7130077f02e43d0a0a` completed successfully: frozen dependency install, ESLint, TypeScript and the optimized Next.js production build. The production Vercel site has still not been visually audited or checked with Lighthouse because the browser inspection service could not retrieve the host.
