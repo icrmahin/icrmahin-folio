@@ -59,8 +59,8 @@ The unused source components are left in the repository for this pass; they are 
 
 ## Verification limits and deployment handoff
 
-The GitHub repository homepage field identifies the production URL as `https://icrmahin-chi.vercel.app`. The repository does not contain a Vercel project config or a custom-domain file. The available browser inspection service could not retrieve that host, so the production website has **not** been visually audited in this pass.
+A Vercel project named `icrmahin` has been created in the `icrmahin` Hobby team and linked to this repository. Vercel assigned and verified `https://icrmahin.vercel.app` as its project domain. The project uses Node.js 24, Next.js auto-detection and pnpm 12.15.0. `NEXT_PUBLIC_SITE_URL` is configured as `https://icrmahin.vercel.app` for production, preview and development; the source fallback matches it.
 
-The app now uses `https://icrmahin-chi.vercel.app` as its default canonical origin. Set `NEXT_PUBLIC_SITE_URL` in Vercel only when using a different canonical/custom domain. A successful browser/Lighthouse review still needs the production deployment to be reachable.
+The first Vercel build completed successfully from commit `8d8a3aa55c67723ca2da4351a6e36b3184ebee75` on `portfolio/evolution`. That deployment became the initial production deployment because the Vercel deployment API inferred a production target from the request. The site has not yet had a visual/browser or Lighthouse review. Treat this as an initial publication, not a completed quality audit.
 
 A local pnpm install/build was not run in the assistant's container because it could not resolve GitHub for a clone. GitHub Actions run #6 for commit `d7f027b79addeb37ec03bf7130077f02e43d0a0a` completed successfully: frozen dependency install, ESLint, TypeScript and the optimized Next.js production build. The production Vercel site has still not been visually audited or checked with Lighthouse because the browser inspection service could not retrieve the host.
