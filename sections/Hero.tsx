@@ -1,163 +1,79 @@
-"use client";
-
-import { useEffect, useState, type PointerEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  CalendarBlankIcon,
+  ArrowDownRightIcon,
+  ArrowUpRightIcon,
   DownloadSimpleIcon,
 } from "@phosphor-icons/react/ssr";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from "motion/react";
-
-const geistFonts = [
-  "font-geist-sans",
-  "font-geist-mono",
-  "font-geist-serif",
-  "font-geist-serif-regular",
-  "font-geist-serif-square",
-  "font-geist-serif-triangle",
-  "font-geist-serif-heart",
-  "font-geist-pixel",
-  "font-geist-pixel-square",
-  "font-geist-pixel-grid",
-  "font-geist-pixel-circle",
-  "font-geist-pixel-triangle",
-  "font-geist-pixel-line",
-] as const;
-
-function QuestionMark() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [fontIndex, setFontIndex] = useState(0);
-  const reduceMotion = useReducedMotion();
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const spring = reduceMotion
-    ? { stiffness: 1000, damping: 100 }
-    : { stiffness: 500, damping: 32 };
-  const x = useSpring(pointerX, spring);
-  const y = useSpring(pointerY, spring);
-  const velocity = useVelocity(x);
-  const blur = useTransform(
-    velocity,
-    [-1000, 0, 1000],
-    ["1.2px", "0px", "1.2px"],
-  );
-
-  useEffect(() => {
-    if (!isHovered || reduceMotion) return;
-
-    const interval = window.setInterval(() => {
-      setFontIndex((index) => (index + 1) % geistFonts.length);
-    }, 500);
-
-    return () => window.clearInterval(interval);
-  }, [isHovered, reduceMotion]);
-
-  function trackPointer(event: PointerEvent<HTMLAnchorElement>) {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    pointerX.set(event.clientX - bounds.left + 14);
-    pointerY.set(event.clientY - bounds.top + 14);
-  }
-
-  return (
-    <Link
-      aria-label="Read about Mahin"
-      className="group relative grid cursor-pointer text-[180px] leading-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
-      href="/about"
-      onPointerEnter={(event) => {
-        setFontIndex(0);
-        setIsHovered(true);
-        trackPointer(event);
-      }}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
-      onPointerLeave={() => setIsHovered(false)}
-      onPointerMove={trackPointer}
-    >
-      <span
-        aria-hidden="true"
-        className="col-start-1 row-start-1 font-geist-pixel-grid transition-opacity duration-300 ease-in-out group-hover:opacity-0"
-      >
-        ?
-      </span>
-      <span
-        aria-hidden="true"
-        className="col-start-1 row-start-1 font-geist-pixel-triangle opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
-      >
-        ?
-      </span>
-      <AnimatePresence>
-        {isHovered && (
-          <motion.span
-            animate={{ opacity: 1, scale: 1 }}
-            className="pointer-events-none absolute left-0 top-0 z-10 min-w-28 whitespace-nowrap rounded-md border border-border bg-surface px-3 py-2 text-center text-sm leading-none text-text shadow-md"
-            exit={{ opacity: 0, scale: 0.96 }}
-            initial={{ opacity: 0, scale: 0.96 }}
-            key="cursor-tooltip"
-            style={{ filter: reduceMotion ? "blur(0px)" : blur, x, y }}
-            transition={{ duration: reduceMotion ? 0 : 0.16 }}
-          >
-            <AnimatePresence initial={false} mode="wait">
-              <motion.span
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                className={geistFonts[fontIndex]}
-                exit={{ opacity: 0, filter: "blur(2px)" }}
-                initial={
-                  reduceMotion ? false : { opacity: 0, filter: "blur(2px)" }
-                }
-                key={geistFonts[fontIndex]}
-                transition={{ duration: reduceMotion ? 0 : 0.18 }}
-              >
-                who am i ?
-              </motion.span>
-            </AnimatePresence>
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </Link>
-  );
-}
 
 export default function Hero() {
   return (
-    <section id="about">
-      <div className="relative mx-auto flex max-w-xl flex-col-reverse items-center justify-center gap-10 px-6 py-8 sm:flex-row sm:justify-between">
-        <div className="w-full">
-          <div className="text-accent font-geist-serif-triangle text-6xl">
-            Hi.
+    <section aria-labelledby="hero-title" className="shell hero" id="top">
+      <div className="hero__copy">
+        <p className="eyebrow">
+          <span aria-hidden="true" className="eyebrow__dot" />
+          Independent product engineer / Dhaka, Bangladesh
+        </p>
+        <h1 id="hero-title">
+          Good ideas deserve <em>working software.</em>
+        </h1>
+        <p className="hero__lede">
+          I bring product thinking, interface design and practical engineering
+          together to turn early ideas into useful web and mobile products.
+        </p>
+        <div className="hero__actions">
+          <Link className="button button--accent" href="/#work">
+            Explore selected work
+            <ArrowDownRightIcon aria-hidden="true" size={16} />
+          </Link>
+          <a className="button button--quiet" href="mailto:icrmahin@gmail.com">
+            Start a conversation
+            <ArrowUpRightIcon aria-hidden="true" size={16} />
+          </a>
+          <a className="button button--quiet" download href="/resume.pdf">
+            Resume
+            <DownloadSimpleIcon aria-hidden="true" size={16} />
+          </a>
+        </div>
+        <p className="hero__note">
+          Product direction · Interface design · Web & mobile engineering
+        </p>
+      </div>
+
+      <div aria-label="Portrait and product-building visual" className="hero-visual" role="group">
+        <div className="hero-paper">
+          <div className="hero-paper__top">
+            <span>Field note / 001</span>
+            <span>icrmahin</span>
           </div>
-          <div className="text-4xl font-geist-sans">it&apos;s Mahin.</div>
-          <div className="text-lg text-[#F4F5F8]/30 font-geist-serif-triangle italic">
-            Resilience · Adaptability · Autonomy
+          <div>
+            <p className="hero-paper__title">
+              Make the
+              <span>useful</span>
+              thing real.
+            </p>
+            <div className="hero-paper__rule">Product thinking to shipped software</div>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <a
-              className="inline-flex min-h-9 items-center gap-2 rounded-md bg-accent px-3 text-xs font-medium text-accent-foreground transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-              href="https://cal.com/icrmahin"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <CalendarBlankIcon aria-hidden="true" size={15} />
-              Book a call
-            </a>
-            <a
-              className="inline-flex min-h-9 items-center gap-2 rounded-md border border-border px-3 text-xs font-medium text-text-muted transition-colors hover:border-border-strong hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-              download
-              href="/resume.pdf"
-            >
-              <DownloadSimpleIcon aria-hidden="true" size={15} />
-              Download resume
-            </a>
+          <div className="hero-paper__bottom">
+            <span>Design / Build / Refine</span>
+            <span>01—03</span>
           </div>
         </div>
-        <QuestionMark />
+        <figure className="hero-portrait">
+          <Image
+            alt="Portrait of A. Mahin"
+            className="rounded-[1px]"
+            height={720}
+            priority
+            sizes="(max-width: 760px) 34vw, 190px"
+            src="/pfp.png"
+            width={720}
+          />
+          <figcaption className="hero-portrait__caption">
+            <span>Builder / Dhaka</span>
+            <span>icr</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

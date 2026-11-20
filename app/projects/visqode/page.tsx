@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
-import CaseStudy from "@/components/projects/CaseStudy";
-import { projects } from "@/lib/projects";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Visqode.nvim Case Study",
-};
-
-export default function VisqodePage() {
-  return <CaseStudy project={projects.visqode} />;
+export default function LegacyVisqodeRoute() {
+  redirect("/projects/wolfvane-zed-theme");
 }

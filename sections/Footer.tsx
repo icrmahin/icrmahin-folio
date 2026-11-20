@@ -1,28 +1,27 @@
-import { ArrowUpIcon, ArrowUpRightIcon } from "@phosphor-icons/react/ssr";
+import Link from "next/link";
+import { ArrowUpRightIcon, ArrowUpIcon } from "@phosphor-icons/react/ssr";
 
 export default function Footer() {
   return (
-    <footer className="mx-auto max-w-xl px-6 pb-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border py-4 text-xs text-text-subtle">
-        <p>© 2026 A. Mahin</p>
-        <nav aria-label="Footer navigation" className="flex items-center gap-4">
-          <a
-            className="inline-flex items-center gap-1.5 transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-            href="#about"
-          >
-            <ArrowUpIcon aria-hidden="true" size={14} />
-            Back to top
+    <footer className="site-footer">
+      <div className="shell site-footer__inner">
+        <div>
+          <Link className="wordmark" href="/">
+            icrmahin<span className="wordmark__mark">/</span>
+          </Link>
+          <p className="site-footer__meta mt-2">Independent product engineer / builder</p>
+        </div>
+        <nav aria-label="Footer links" className="flex flex-wrap items-center gap-5">
+          <a href="mailto:icrmahin@gmail.com">Email</a>
+          <a href="https://github.com/icrmahin" rel="noreferrer" target="_blank">
+            GitHub <ArrowUpRightIcon aria-hidden="true" size={12} />
           </a>
-          <a
-            className="inline-flex items-center gap-1.5 transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-            href="https://github.com/icrmahin"
-            rel="noreferrer"
-            target="_blank"
-          >
-            GitHub
-            <ArrowUpRightIcon aria-hidden="true" size={14} />
-          </a>
+          <a download href="/resume.pdf">Resume</a>
+          <Link href="/">
+            Back to top <ArrowUpIcon aria-hidden="true" size={12} />
+          </Link>
         </nav>
+        <p className="site-footer__meta">© 2026 A. Mahin</p>
       </div>
     </footer>
   );

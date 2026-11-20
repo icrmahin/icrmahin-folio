@@ -1,48 +1,92 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { GeistMono } from "geist/font/mono";
-import { GeistPixel } from "geist/font/pixel/variable";
-import {
-  GeistPixelCircle,
-  GeistPixelGrid,
-  GeistPixelLine,
-  GeistPixelSquare,
-  GeistPixelTriangle,
-} from "geist/font/pixel";
-import {
-  GeistSerif,
-  GeistSerifHeart,
-  GeistSerifRegular,
-  GeistSerifSquare,
-  GeistSerifTriangle,
-} from "geist/font/serif";
 import { GeistSans } from "geist/font/sans";
+import { GeistSerif } from "geist/font/serif";
 import "./globals.css";
-import Navigation from "../components/nav/Navigation";
-import Footer from "../sections/Footer";
-import SiteIntro from "../components/app/SiteIntro";
-import ThemeProvider from "../components/theme/ThemeProvider";
-import MinimalCursor from "../components/app/MinimalCursor";
-import { Geist } from "next/font/google";
+import Navigation from "@/components/nav/Navigation";
+import Footer from "@/sections/Footer";
+import ThemeProvider from "@/components/theme/ThemeProvider";
 import { cn } from "@/lib/utils";
+import { siteUrl } from "@/lib/site";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const siteDescription =
+  "A. Mahin is an independent product engineer and builder working across product thinking, interface design and practical software engineering.";
 
 export const metadata: Metadata = {
+  ...(siteUrl
+    ? {
+        metadataBase: new URL(siteUrl),
+        alternates: { canonical: "/" },
+      }
+    : {}),
   title: {
-    default: "A. Mahin — Product Builder",
-    template: "%s | A. Mahin",
+    default: "A. Mahin — Independent Product Engineer",
+    template: "%s — A. Mahin",
   },
-  description:
-    "I design, build, and ship digital products through thoughtful design and practical engineering.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  description: siteDescription,
+  applicationName: "icrmahin",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "icrmahin",
+    title: "A. Mahin — Independent Product Engineer",
+    description: siteDescription,
+    ...(siteUrl ? { url: siteUrl } : {}),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "A. Mahin — Independent Product Engineer",
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08090A",
-  colorScheme: "light dark",
+  themeColor: "#15191B",
+  colorScheme: "dark light",
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "A. Mahin",
+      alternateName: "icrmahin",
+      jobTitle: "Independent Product Engineer",
+      description: siteDescription,
+      sameAs: ["https://github.com/icrmahin"],
+      ...(siteUrl ? { url: siteUrl } : {}),
+      knowsAbout: [
+        "Product engineering",
+        "Product design",
+        "Interface design",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "React Native",
+        "Supabase",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      name: "icrmahin",
+      description: siteDescription,
+      inLanguage: "en",
+      ...(siteUrl ? { url: siteUrl } : {}),
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -53,36 +97,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={cn(
-        "h-full",
+        "min-h-full",
         "antialiased",
         GeistSans.variable,
         GeistMono.variable,
-        GeistPixel.variable,
-        GeistPixelSquare.variable,
-        GeistPixelGrid.variable,
-        GeistPixelCircle.variable,
-        GeistPixelTriangle.variable,
-        GeistPixelLine.variable,
         GeistSerif.variable,
-        GeistSerifRegular.variable,
-        GeistSerifSquare.variable,
-        GeistSerifTriangle.variable,
-        GeistSerifHeart.variable,
         "font-sans",
-        geist.variable,
       )}
     >
-      <body className="custom-pointer mx-auto flex min-h-screen w-full flex-col pb-20 sm:pb-0">
+      <body className="flex min-h-screen flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         <ThemeProvider>
+          <a className="skip-link" href="#main-content">Skip to main content</a>
           <Navigation />
-          <main className="w-full flex-1">
-            <SiteIntro>{children}</SiteIntro>
-          </main>
+          <main className="flex-1" id="main-content">{children}</main>
           <Footer />
-          <MinimalCursor />
         </ThemeProvider>
       </body>
     </html>
