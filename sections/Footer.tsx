@@ -21,7 +21,7 @@ export default function Footer() {
             Back to top <ArrowUpIcon aria-hidden="true" size={12} />
           </Link>
         </nav>
-        <p className="site-footer__meta">© {new Date().getFullYear()} A. Mahin</p>
+        <p className="site-footer__meta">© 2026 A. Mahin</p>
       </div>
     </footer>
   );
