@@ -115,8 +115,9 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>
+          <a className="skip-link" href="#main-content">Skip to main content</a>
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1" id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

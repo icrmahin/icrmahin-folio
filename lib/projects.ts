@@ -170,24 +170,7 @@ export const projects = {
       "No framework or runtime dependency",
     ],
   },
-  sifaPharma: {
-    slug: "sifa-pharma",
-    title: "Sifa Pharma",
-    category: "Pharmacy operations",
-    description:
-      "A pharmacy platform for customer ordering, inventory and shop operations.",
-    visual: "storefront",
-    technologies: ["Expo", "React Native", "Supabase"],
-    repository: "https://github.com/icrmahin/Sifa-Pharma",
-    contribution: "Project details pending source verification",
-    overview:
-      "This earlier portfolio entry is retained for reference, but its current source repository and project scope have not been verified in this audit.",
-    context:
-      "The available public repository inventory did not provide enough evidence to write a reliable case study for this project.",
-    approach: [],
-    capabilities: [],
-    engineeringNotes: [],
-  },
+
 } satisfies Record<string, Project>;
 
 export const featuredProjects: readonly Project[] = [

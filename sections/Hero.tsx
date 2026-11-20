@@ -40,7 +40,7 @@ export default function Hero() {
         </p>
       </div>
 
-      <div aria-label="Portrait and product-building visual" className="hero-visual">
+      <div aria-label="Portrait and product-building visual" className="hero-visual" role="group">
         <div className="hero-paper">
           <div className="hero-paper__top">
             <span>Field note / 001</span>
