@@ -1,3 +1,11 @@
+export type WorkflowStep = {
+  id: string;
+  title: string;
+  description: string;
+  input: boolean;
+  output: boolean;
+};
+
 export type ProjectVisual = "storefront" | "landing" | "editor";
 
 export type ProjectApproach = {
